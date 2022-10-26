@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:insta_clone/mobile/screens/m_login_screen.dart';
+import 'package:insta_clone/mobile/screens/m_signup_screen.dart';
 import 'package:insta_clone/utils/responsiveness.dart';
 
 class ResponsiveLayout extends StatelessWidget {
@@ -14,7 +15,7 @@ class ResponsiveLayout extends StatelessWidget {
           return webScreenLayout;
       }
       //TODO:MLOginScreen to be passed
-      return MLoginScreen();
+      return MSignUpScreen();
     });
   }
 }

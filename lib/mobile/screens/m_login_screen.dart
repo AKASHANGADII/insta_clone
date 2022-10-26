@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:insta_clone/mobile/screens/m_signup_screen.dart';
 import 'package:insta_clone/mobile/widgets/TextInputField.dart';
 import 'package:insta_clone/utils/colours.dart';
 
-class MLoginScreen extends StatelessWidget {
+class MLoginScreen extends StatefulWidget {
+  static const routeName='/m-login-screen';
+  @override
+  State<MLoginScreen> createState() => _MLoginScreenState();
+}
+
+class _MLoginScreenState extends State<MLoginScreen> {
   TextEditingController _emailController=TextEditingController();
+
   TextEditingController _passwordController=TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +77,7 @@ class MLoginScreen extends StatelessWidget {
                     Text("Don\'t have an account ? "),
                     InkWell(
                         onTap: (){
-                          //TODO:Navigate to signup screen
+                          Navigator.pushReplacementNamed(context, MSignUpScreen.routeName);
                         },
                         child: Text("Sign Up",style: TextStyle(fontWeight: FontWeight.bold),)),
                   ],
