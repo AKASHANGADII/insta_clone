@@ -29,6 +29,13 @@
             {
               "client_id": "500431213347-r5v8s7npqcaaaph0ph2url13gkvmabbf.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "500431213347-bts77f0kg1v1drkb9uq7684l9ar09o22.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.instaClone"
+              }
             }
           ]
         }

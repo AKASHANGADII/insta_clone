@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -45,15 +48,6 @@ class DefaultFirebaseOptions {
         );
     }
   }
-
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBmZS-huzYdnnZsECeJznIEl455oz3oX58',
-    appId: '1:500431213347:web:e4f83d2994c7d5e71df296',
-    messagingSenderId: '500431213347',
-    projectId: 'insta-clone-8431a',
-    authDomain: 'insta-clone-8431a.firebaseapp.com',
-    storageBucket: 'insta-clone-8431a.appspot.com',
-  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAVPwVdpCysD0hnLPOaCopOeBX9oHEKvY8',

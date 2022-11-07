@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:insta_clone/mobile/screens/m_home_screen.dart';
 import 'package:insta_clone/mobile/screens/m_signup_screen.dart';
 import 'package:insta_clone/mobile/widgets/TextInputField.dart';
+import 'package:insta_clone/resources/auth_methods.dart';
 import 'package:insta_clone/utils/colours.dart';
+import 'package:insta_clone/utils/utils.dart';
 
 class MLoginScreen extends StatefulWidget {
   static const routeName='/m-login-screen';
@@ -14,14 +17,29 @@ class _MLoginScreenState extends State<MLoginScreen> {
   TextEditingController _emailController=TextEditingController();
 
   TextEditingController _passwordController=TextEditingController();
-
+  bool _isLoading=false;
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
-
+  void loginUser() async{
+    setState(() {
+      _isLoading=true;
+    });
+    await AuthMethods().loginUser(_emailController.text, _passwordController.text).then((value){
+      if(value=="Success"){
+        Navigator.of(context).pushReplacementNamed(MHomeScreen.routeName);
+      }
+      else{
+        showSnackBar(context, value);
+      }
+    });
+    setState(() {
+      _isLoading=false;
+    });
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -50,9 +68,7 @@ class _MLoginScreenState extends State<MLoginScreen> {
                             TextInputField(textController: _passwordController, hintText: "Password",isPass: true,textInputType: TextInputType.text,),
                             SizedBox(height: 25,),
                             InkWell(
-                              onTap: (){
-                                //TODO:User login
-                              },
+                              onTap: loginUser,
                               child: Container(
                                 width: double.infinity,
                                 padding: EdgeInsets.symmetric(vertical: 10),
@@ -60,7 +76,7 @@ class _MLoginScreenState extends State<MLoginScreen> {
                                   borderRadius: BorderRadius.circular(8),
                                   color: blueColor,
                                 ),
-                                child: Center(child: Text("Log In",style: TextStyle(fontSize: 20),)),
+                                child: Center(child: _isLoading?CircularProgressIndicator(color: Colors.white,):Text("Log In",style: TextStyle(fontSize: 20),)),
                               ),
                             )
                           ],
