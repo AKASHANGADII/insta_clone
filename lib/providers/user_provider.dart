@@ -8,6 +8,7 @@ class UserProvider with ChangeNotifier{
   User? get getUser=>_user;
   Future<void> refreshUser()async {
     _user=await AuthMethods().getUserDetails();
+    print(_user!.imageUrl);
     notifyListeners();
   }
 }
