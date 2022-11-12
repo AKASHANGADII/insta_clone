@@ -39,6 +39,4 @@ class User {
         'followers': [],
         'profileImage': imageUrl,
       };
-
-
 }
