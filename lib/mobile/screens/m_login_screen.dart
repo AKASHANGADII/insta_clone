@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:insta_clone/mobile/screens/m_home_screen.dart';
 import 'package:insta_clone/mobile/screens/m_signup_screen.dart';
-import 'package:insta_clone/mobile/widgets/TextInputField.dart';
+import 'package:insta_clone/mobile/widgets/text_input_field.dart';
 import 'package:insta_clone/resources/auth_methods.dart';
 import 'package:insta_clone/utils/colours.dart';
 import 'package:insta_clone/utils/utils.dart';

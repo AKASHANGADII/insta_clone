@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:insta_clone/mobile/screens/m_add_post_screen.dart';
+import 'package:insta_clone/mobile/screens/m_feed_screen.dart';
 import 'package:insta_clone/providers/user_provider.dart';
 import 'package:insta_clone/utils/colours.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +20,7 @@ class _MHomeScreenState extends State<MHomeScreen> {
   int _currentIndex=0;
 
   final _tabs=[
-    Center(child: Text("Home"),),
+    MFeedScreen(),
     Center(child: Text("Search"),),
     MAddPostScreen(),
     Center(child: Text("Favorites"),),

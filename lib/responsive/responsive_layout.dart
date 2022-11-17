@@ -30,7 +30,7 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
       if(constraints.maxWidth>minWebScreenSize){
           return widget.webScreenLayout;
       }
-      //TODO:MLOginScreen to be passed
+      //TODO:MLoginScreen to be passed
       return MHomeScreen();
     });
   }
