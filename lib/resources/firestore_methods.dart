@@ -3,12 +3,15 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:insta_clone/models/comments.dart';
 import 'package:insta_clone/models/post.dart';
 import 'package:insta_clone/resources/storage_methods.dart';
 import 'package:uuid/uuid.dart';
 
 class FirestoreMethods {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+
   Future<String> UploadPost(String description, Uint8List image, String uid,
       String userName, String profileUrl) async {
     String res = "Something went wrong";
@@ -35,8 +38,7 @@ class FirestoreMethods {
   }
 
   Future<void> likePost(String uid, String postId, List likes) async {
-
-    try{
+    try {
       if (likes.contains(uid)) {
         _firestore.collection('posts').doc(postId).update({
           'likes': FieldValue.arrayRemove([uid]),
@@ -46,9 +48,33 @@ class FirestoreMethods {
           'likes': FieldValue.arrayUnion([uid])
         });
       }
-    }catch(err){
+    } catch (err) {
       print(err.toString());
     }
+  }
 
+  Future<String> postComment(String postId, String userName, String uid,
+      String text, DateTime date, String profileUrl) async {
+    try {
+      if (text.isNotEmpty) {
+        var commentId = const Uuid().v1();
+        Comments comment = Comments(
+            userName: userName,
+            uid: uid,
+            profileUrl: profileUrl,
+            commentText: text,
+            dateTime: DateTime.now(),
+            commentId: commentId);
+        await _firestore
+            .collection('posts')
+            .doc(postId)
+            .collection('comments')
+            .doc(commentId)
+            .set(comment.toJson());
+      }
+    } catch (err) {
+      return err.toString();
+    }
+    return "something";
   }
 }

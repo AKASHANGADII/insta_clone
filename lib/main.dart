@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:insta_clone/mobile/screens/m_comments_screen.dart';
 import 'package:insta_clone/mobile/screens/m_home_screen.dart';
 import 'package:insta_clone/mobile/screens/m_login_screen.dart';
 import 'package:insta_clone/providers/user_provider.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
             MLoginScreen.routeName:(ctx)=>MLoginScreen(),
             MSignUpScreen.routeName:(ctx)=>MSignUpScreen(),
             MHomeScreen.routeName:(ctx)=>MHomeScreen(),
+            MCommentsScreen.routeName:(ctx)=>MCommentsScreen(),
           },
         ),
       );
