@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:insta_clone/mobile/screens/m_add_post_screen.dart';
 import 'package:insta_clone/mobile/screens/m_feed_screen.dart';
+import 'package:insta_clone/mobile/screens/m_search_screen.dart';
 import 'package:insta_clone/providers/user_provider.dart';
 import 'package:insta_clone/utils/colours.dart';
 import 'package:provider/provider.dart';
@@ -17,11 +18,11 @@ class MHomeScreen extends StatefulWidget {
 
 class _MHomeScreenState extends State<MHomeScreen> {
 
-  int _currentIndex=0;
+  int _currentIndex=1;
 
   final _tabs=[
     MFeedScreen(),
-    Center(child: Text("Search"),),
+    MSearchScreen(),
     MAddPostScreen(),
     Center(child: Text("Favorites"),),
     Center(child: Text("Profile"),),

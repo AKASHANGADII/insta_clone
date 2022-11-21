@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:insta_clone/mobile/screens/m_home_screen.dart';
-import 'package:insta_clone/mobile/screens/m_login_screen.dart';
 import 'package:insta_clone/providers/user_provider.dart';
 import 'package:insta_clone/utils/responsiveness.dart';
 import 'package:provider/provider.dart';

@@ -16,8 +16,12 @@ class MCommentsScreen extends StatefulWidget {
 }
 
 class _MCommentsScreenState extends State<MCommentsScreen> {
-  TextEditingController controller = TextEditingController();
-
+  TextEditingController commentController = TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    commentController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     User? user = Provider.of<UserProvider>(context).getUser;
@@ -49,7 +53,7 @@ class _MCommentsScreenState extends State<MCommentsScreen> {
                   ),
                 );
               } else {
-                return Center(
+                return const Center(
                     child: CircularProgressIndicator(
                   color: Colors.red,
                 ));
@@ -57,7 +61,7 @@ class _MCommentsScreenState extends State<MCommentsScreen> {
             },
           )),
           Container(
-            margin: EdgeInsets.all(5),
+            margin:const EdgeInsets.all(5),
             height: MediaQuery.of(context).size.height * 0.09,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -70,30 +74,30 @@ class _MCommentsScreenState extends State<MCommentsScreen> {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: TextField(
-                        controller: controller,
+                        controller: commentController,
                         decoration: InputDecoration(
                           hintText: "Comment as @${user!.userName}",
-                          hintStyle: TextStyle(fontSize: 14),
+                          hintStyle: const TextStyle(fontSize: 14),
                           border: InputBorder.none,
                         ),
                       ),
                     ),
                   ),
-                  controller.text.isNotEmpty
+                  commentController.text.isNotEmpty
                       ? InkWell(
                           onTap: () async {
                             await FirestoreMethods().postComment(
                                 postId.toString(),
                                 user.userName,
                                 user.uid,
-                                controller.text,
+                                commentController.text,
                                 DateTime.now(),
                                 user.imageUrl);
-                            controller.clear();
+                            commentController.clear();
                           },
-                          child: Text(
+                          child: const Text(
                             "Post",
                             style: TextStyle(color: Colors.blue),
                           ),
