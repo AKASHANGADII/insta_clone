@@ -1,12 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_clone/mobile/screens/m_add_post_screen.dart';
 import 'package:insta_clone/mobile/screens/m_feed_screen.dart';
+import 'package:insta_clone/mobile/screens/m_profile_screen.dart';
 import 'package:insta_clone/mobile/screens/m_search_screen.dart';
-import 'package:insta_clone/providers/user_provider.dart';
 import 'package:insta_clone/utils/colours.dart';
-import 'package:provider/provider.dart';
 
-import '../../models/user.dart';
 
 class MHomeScreen extends StatefulWidget {
   static const routeName='/m-home-screen';
@@ -18,18 +17,17 @@ class MHomeScreen extends StatefulWidget {
 
 class _MHomeScreenState extends State<MHomeScreen> {
 
-  int _currentIndex=1;
+  int _currentIndex=0;
 
   final _tabs=[
     MFeedScreen(),
     MSearchScreen(),
     MAddPostScreen(),
     Center(child: Text("Favorites"),),
-    Center(child: Text("Profile"),),
+    MProfileScreen(uid: FirebaseAuth.instance.currentUser!.uid,)
   ];
   @override
   Widget build(BuildContext context) {
-    User? userDetails=Provider.of<UserProvider>(context).getUser;
     return Scaffold(
       body: _tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
