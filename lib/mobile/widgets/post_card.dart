@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:insta_clone/mobile/screens/m_comments_screen.dart';
+import 'package:insta_clone/mobile/screens/m_profile_screen.dart';
 import 'package:insta_clone/mobile/widgets/like_animation.dart';
 import 'package:insta_clone/models/user.dart';
 import 'package:insta_clone/providers/user_provider.dart';
@@ -36,9 +37,14 @@ class _PostCardState extends State<PostCard> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 6),
-                  child: Text(
-                    widget.snap!['userName'],
-                    style: TextStyle(fontSize: 16),
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MProfileScreen(uid: widget.snap!['uid'])));
+                    },
+                    child: Text(
+                      widget.snap!['userName'],
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ),
               ),

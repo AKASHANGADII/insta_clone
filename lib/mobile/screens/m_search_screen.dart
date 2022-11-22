@@ -14,6 +14,11 @@ class _MSearchScreenState extends State<MSearchScreen> {
 
   bool showUsers = false;
   @override
+  void dispose() {
+    super.dispose();
+    textController.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -72,6 +77,7 @@ class _MSearchScreenState extends State<MSearchScreen> {
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: (){
+                            textController.clear();
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>MProfileScreen(uid: snapshot.data!.docs[index]['uid'])));
                           },
                           child: ListTile(

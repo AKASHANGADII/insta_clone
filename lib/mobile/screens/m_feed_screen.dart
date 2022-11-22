@@ -22,14 +22,13 @@ class MFeedScreen extends StatelessWidget {
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('posts').snapshots(),
         builder: (context,AsyncSnapshot<QuerySnapshot<Map<String,dynamic>>> snapshot){
-          if( snapshot.hasData){
+          if( !snapshot.hasData || snapshot.connectionState==ConnectionState.waiting){
+            return Center(child: CircularProgressIndicator(color: Colors.red,));
+          }
+          else{
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context,index)=>PostCard(snap: snapshot.data!.docs[index].data(),),);
-          }
-          else{
-            return Center(child: CircularProgressIndicator(color: Colors.red,));
-
           }
 
       },

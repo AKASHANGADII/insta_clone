@@ -60,5 +60,9 @@ class AuthMethods{
   }
 
 
+  Future<void> logOut() async{
+    await _auth.signOut();
+  }
+
 
 }
